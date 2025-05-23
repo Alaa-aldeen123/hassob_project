@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prediction History</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <!-- DataTables CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css"
+  />
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+</head>
+<body class="bg-light">
+  <div class="container my-5">
+    <div class="card shadow">
+      <div class="card-header bg-secondary text-white">
+        <h3 class="mb-0">Previous Predictions</h3>
+      </div>
+      <div class="card-body">
+        <table id="historyTable" class="table table-striped table-hover">
+          <thead class="table-dark">
+            <!-- Column titles -->
+            <tr>
+              <th>Timestamp</th>
+              <th>Patient</th>
+              <th>Inputs</th>
+              <th>Prediction</th>
+              <th>Probs (%)</th>
+            </tr>
+            <!-- Per-column search inputs -->
+            <tr>
+              <th><input type="text" class="form-control form-control-sm" placeholder="Search timestamp"></th>
+              <th><input type="text" class="form-control form-control-sm" placeholder="Search patient"></th>
+              <th><input type="text" class="form-control form-control-sm" placeholder="Search inputs"></th>
+              <th><input type="text" class="form-control form-control-sm" placeholder="Search prediction"></th>
+              <th><input type="text" class="form-control form-control-sm" placeholder="Search probs"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for rec in history %}
+            <tr>
+              <td>{{ rec.timestamp }}</td>
+              <td>{{ rec.patient_name }}</td>
+              <td>
+                Age: {{ rec.inputs.age }}<br>
+                Sex: {{ rec.inputs.sex }}<br>
+                CP: {{ rec.inputs.chest_pain_type }}<br>
+                FBS: {{ rec.inputs.fasting_blood_sugar }}<br>
+                ECG: {{ rec.inputs.heart_ecg }}<br>
+                Angina: {{ rec.inputs.exercise_induced_angina }}<br>
+                BP: {{ rec.inputs.resting_blood_pressure }}<br>
+                Chol: {{ rec.inputs.cholesterol }}<br>
+                HR: {{ rec.inputs.maximum_heart_rate }}<br>
+                ST: {{ rec.inputs.oldpeak }}
+              </td>
+              <td>{{ rec.prediction }}</td>
+              <td>{{ rec.probabilities | join(', ') }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <a href="/" class="btn btn-outline-primary mt-3">← Back to Form</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Initialize DataTables with per-column filtering -->
+  <script>
+    $(document).ready(function() {
+      var table = $('#historyTable').DataTable({
+        orderCellsTop: true,
+        fixedHeader: true,
+        paging: true,
+        lengthChange: false,
+        searching: true,
+        info: false
+      });
+
+      // Apply per-column search
+      $('#historyTable thead tr:eq(1) th').each(function(i) {
+        $('input', this).on('keyup change clear', function() {
+          if (table.column(i).search() !== this.value) {
+            table
+              .column(i)
+              .search(this.value)
+              .draw();
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+

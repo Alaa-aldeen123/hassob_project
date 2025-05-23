@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Heart Attack Predictor</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container mt-5">
+    <div class="card shadow">
+      <div class="card-header bg-primary text-white">
+        <h3 class="mb-0">Heart Disease Predictor</h3>
+      </div>
+      <div class="card-body">
+        <form method="POST" action="/predict">
+          <div class="row mb-3">
+            <div class="mb-3">
+              <input type="text" name="patient_name" class="form-control" placeholder="Patient Name" required>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Sex</label>
+              <select name="sex" class="form-select" required>
+                <option disabled selected value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Chest Pain Type</label>
+              <select name="chest_pain_type" class="form-select" required>
+                <option disabled selected value="">Select</option>
+                <option value="typical angina">Typical Angina</option>
+                <option value="atypical angina">Atypical Angina</option>
+                <option value="non-anginal">Non-Anginal Pain</option>
+                <option value="asymptomatic">Asymptomatic</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Fasting Blood Sugar &gt; 120 mg/dl</label>
+              <select name="fasting_blood_sugar" class="form-select" required>
+                <option disabled selected value="">Select</option>
+                <option value="False">False</option>
+                <option value="True">True</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Resting ECG</label>
+              <select name="heart_ecg" class="form-select" required>
+                <option disabled selected value="">Select</option>
+                <option value="normal">Normal</option>
+                <option value="lv hypertrophy">Left Ventricular (LV) Hypertrophy</option>
+                <option value="st-t abnormality">st-t abnormality</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Exercise Induced Angina</label>
+            <select name="exercise_induced_angina" class="form-select" required>
+              <option disabled selected value="">Select</option>
+              <option value="False">False</option>
+              <option value="True">True</option>
+            </select>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <input type="number" name="age" class="form-control" placeholder="Age" required>
+            </div>
+            <div class="col-md-4">
+              <input type="number" name="trestbps" class="form-control" placeholder="Resting BP" required>
+            </div>
+            <div class="col-md-4">
+              <input type="number" name="chol" class="form-control" placeholder="Cholesterol" required>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <input type="number" name="thalach" class="form-control" placeholder="Max Heart Rate" required>
+            </div>
+            <div class="col-md-6">
+              <input type="number" name="oldpeak" class="form-control" placeholder="ST Depression" step="0.01" required>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-success px-4">Predict</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
