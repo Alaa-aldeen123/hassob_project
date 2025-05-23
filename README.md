@@ -1,6 +1,3 @@
-# hassob_project
-The final project for AI course to Hassob Academy
-
 # Heart Disease Prediction Web App
 
 A Flask-based web application that predicts the stage of heart disease based on patient data using a trained machine learning model and stores prediction history in a SQLite database.
@@ -47,38 +44,46 @@ A Flask-based web application that predicts the stage of heart disease based on 
 
 ## Installation
 
-1. **Clone the repository**
+> **Shell environments:** You can run the following commands in a Unix-like terminal (bash, zsh) or in Windows PowerShell / Command Prompt.
+
+1. **Clone the repository to your local machine**
 
    ```bash
-   git clone https://github.com/Alaa-aldeen123/Hassob_Course/Hassob_project.git
-   cd Hassob_project
+   git clone https://github.com/Alaa-aldeen123/hassob_project.git
    ```
 
-2. **Create and activate a virtual environment**
+2. **Change into the project directory**
 
    ```bash
-   python3 -m venv venv
-   source venv/bin/activate    # On Windows: venv\\Scripts\\activate
+   cd hassob_project
    ```
 
-3. **Install dependencies**
+3. **Create and activate a virtual environment**
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate    # On Windows: venv\Scripts\activate
+   ```
+
+4. **Install dependencies**
 
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Ensure the model and encoders are in place**
+5. **Ensure the model and encoders are in place**
 
    * `model_le/model.pkl` — trained ML model
    * `model_le/le_*.pkl` — label encoders for categorical features
 
-5. **Run the application**
+6. **Run the application**
 
    ```bash
    python app.py
    ```
 
-6. **Access the app** Open your browser and navigate to `http://127.0.0.1:5000/`.
+7. **Access the app**
+   Open your browser and navigate to `http://127.0.0.1:5000/`.
 
 ## Folder Structure
 
